@@ -1,0 +1,10 @@
+Cadastro de produtos.
+
+Get - lista todos os produtos
+Get By id - lista o produto completo buscando pelo id.
+Post - cadastra um produto.
+Put - atualiza um produto.
+Delete - Deleta um produto.
+
+Produto:
+id, nome, descrição, ncm, valor, quantidade, ativo, data de criação, data de atualização.
