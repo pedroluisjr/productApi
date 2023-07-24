@@ -36,7 +36,7 @@ public class Product {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "createdAt")
+    @Column(name = "createdAt", updatable = false)
     @CreationTimestamp
     private Date createdAt;
 

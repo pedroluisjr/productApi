@@ -1,10 +1,10 @@
 package br.com.pedro.produtosapi.controller;
 
-import br.com.pedro.produtosapi.dto.ActualizeProdDto;
 import br.com.pedro.produtosapi.dto.ProductDto;
 import br.com.pedro.produtosapi.model.Product;
 import br.com.pedro.produtosapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,8 +46,13 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public Product actualizeProd(@PathVariable("id") Long id, @RequestBody ActualizeProdDto actualizeProdDto) {
-        return productService.actualizeProd(id, actualizeProdDto);
+    public Product actualizeProd(@PathVariable("id") Long id, @RequestBody ProductDto productDto) {
+        return productService.actualizeProd(id, productDto);
     }
+
+//    @PatchMapping("/{id}")
+//    public ResponseEntity<Product> partialUpdateProd(@PathVariable("id") Long id, @RequestBody ProductDto productDto) {
+//        return productService.partialUpdateProd(id, productDto);
+//    }
 
 }
