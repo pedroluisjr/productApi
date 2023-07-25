@@ -12,10 +12,10 @@ import org.modelmapper.ModelMapper;
 public class ProductDto {
     private String name;
     private String description;
-    private int ncm;
-    private int quantity;
-    private double value;
-    private int active;
+    private int ncm = -1;
+    private int quantity = -1;
+    private double value = -1;
+    private boolean active;
 
     public ProductDto(Product product) {
         new ModelMapper().map(product, this);

@@ -3,12 +3,10 @@ package br.com.pedro.produtosapi.service;
 import br.com.pedro.produtosapi.dto.ProductDto;
 import br.com.pedro.produtosapi.model.Product;
 import br.com.pedro.produtosapi.repository.ProductRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,13 +47,14 @@ public class ProductService {
         return product;
     }
 
-//    public ResponseEntity<Product> partialUpdateProd(Long id, ProductDto productDto) {
-//        Optional<Product> product = productRepository.findById(id);
-//        if (product.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        product.get().setId(id);
-//        productRepository.save(productDto.toProduct());
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    public Product partialUpdateProd(Long id, ProductDto productDto) {
+        Product productSave = productRepository.findById(id).orElseThrow();
+        if (productDto.getName() != null) productSave.setName(productDto.getName());
+        if (productDto.getDescription() != null) productSave.setDescription(productDto.getDescription());
+        if (productDto.getNcm() != -1) productSave.setNcm((long) productDto.getNcm());
+        if (productDto.getValue() != -1) productSave.setValue(productDto.getValue());
+        productSave.setActive(productDto.isActive());
+        productRepository.save(productSave);
+        return productSave;
+    }
 }
